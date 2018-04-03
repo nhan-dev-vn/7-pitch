@@ -1,0 +1,26 @@
+{
+  "name": "pitch-7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nhannt97/Pitch-7.git"
+  },
+  "author": "Lệ, Nhàn, Thao, Thảo - K60CAC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhannt97/Pitch-7/issues"
+  },
+  "homepage": "https://github.com/nhannt97/Pitch-7#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "md5": "^2.2.1",
+    "mongoose": "^5.0.12"
+  }
+}
