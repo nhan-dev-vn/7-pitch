@@ -11,7 +11,10 @@ let sendResponse = function (res, status, content) {
 module.exports.register = function (req, res) {
     user.username = req.body.username;
     user.password = md5(req.body.password);
-    user.save(function (err) {
+    User.create({
+        username: req.body.username,
+        password: md5(req.body.password)
+    }, function (err, user) {
         if (err) {
             sendResponse(res, 400, {message: "Username existed"});
         } else {
@@ -35,4 +38,16 @@ module.exports.login = function (req, res) {
             sendResponse(res, 200, user);
         }
     });
+}
+
+module.exports.getList = function(req, res) {
+    User.find({}, function(err, users) {
+        if(err) {
+            sendResponse(res, 400, err);
+        } else if (!users) {
+            sendResponse(res, 404, { message: 'Not have any user' });
+        } else {
+            sendResponse(res, 200, users);
+        }
+    })
 }

@@ -5,10 +5,11 @@ let bodyParser = require('body-parser');
 
 require('./database/db-connect');
 
-let port = 3000; 
+let port = 3001; 
 
 let routerApi = require('./router/index');
-// app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../client')));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', routerApi);
 

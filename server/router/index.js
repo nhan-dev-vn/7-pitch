@@ -1,44 +1,51 @@
 let router = require('express').Router();
-let auth = require('../controller/authentication');
+let user = require('../controller/user');
 let pitch = require('../controller/pitch');
 let review = require('../controller/review');
 let rent = require('../controller/rent');
+let time = require('../controller/time');
 
-/***** Authentication *****/
+/***** User *****/
 //login
-router.post('/login', auth.login);
+router.post('/login', user.login);
 //register
-router.post('/register', auth.register);
+router.post('/register', user.register);
+//get list users
+router.get('/user/list', user.getList);
 
 /***** Pitch *****/
 //add
 router.post('/pitch', pitch.add);
 //update
 router.put('/pitch/:pitchid', pitch.update);
-//get info a pitch
-router.get('/pitch/:pitchid', pitch.getInfo);
 //get list pithes
 router.get('/pitch/list', pitch.getList);
+//get info a pitch
+router.get('/pitch/:pitchid', pitch.getInfo);
 
 /***** Rent *****/
 //add
 router.post('/pitch/:pitchid/rent', rent.add);
 //update
 router.put('/pitch/:pitchid/rent/:rentid', rent.update);
-//get info a rent
-router.get('/pitch/:pitchid/rent/:rentid', rent.getInfo);
-//get list rents
-router.get('/pitch/:pitchid/rent/list', rent.getList);
+//delete
+router.delete('/pitch/:pitchid/rent/:rentid', rent.delete);
+
 
 /***** Review *****/
 //add
 router.post('/pitch/:pitchid/review', review.add);
 //update
 router.put('/pitch/:pitchid/review/:reviewid', review.update);
-//get info a review
-router.get('/pitch/:pitchid/review/:reviewid', review.getInfo);
-//get list reviews
-router.get('/pitch/:pitchid/review/list', review.getList);
+//delete
+router.delete('/pitch/:pitchid/review/:reviewid', review.delete);
 
+/***** Time *****/
+//add
+router.post('/pitch/:pitchid/time', time.add);
+//update
+router.put('/pitch/:pitchid/time/:timeid', time.update);
+//delete
+router.delete('/pitch/:pitchid/time/:timeid', time.delete);
 
 module.exports = router;

@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch-7</title>
+    <!-- vendor -->
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/socket.io.js"></script>
+
+    <!-- angular module -->
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="pitch7" ng-controller="myCtrl">
+    <script>
+        let socket = io.connect('http://localhost:3000');
+        socket.on('emit', function (data) {
+            console.log(data);
+            // socket.emit('my other event', { my: 'data' });
+        });
+    </script>
+    <input type="text" ng-model="username">
+    <input type="text" ng-model="password">
+    <button ng-click="login()">Login</button>
+    {{name}}-{{password}}
+</body>
+
+</html>

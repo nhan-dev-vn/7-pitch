@@ -10,9 +10,7 @@ module.exports.add = function(req, res) {
         if(err) {
             sendResponse(res, 404, { message: 'Not found pitch' });
         } else {
-            pitch.rents.push({
-                username: req.body.username,
-                phoneNumber: req.body.phoneNumber,
+            pitch.times.push({
                 time: req.body.time,
                 money: req.body.money
             });
@@ -31,14 +29,12 @@ module.exports.update = function(req, res) {
         if(err) {
             sendResponse(res, 404, { message: 'Not found pitch' });
         } else {
-            let rent = pitch.rents.id(req.params.rentid);
-            if(!rent) {
-                sendResponse(res, 404, { message: 'Not found rent' });
+            let time = pitch.times.id(req.params.timeid);
+            if(!time) {
+                sendResponse(res, 404, { message: 'Not found time' });
             } else {
-                rent.username = req.body.username;
-                rent.phoneNumber = req.body.phoneNumber;
-                rent.time = req.body.time;
-                rent.money = req.body.money;
+                time.time = req.body.time;
+                time.money = req.body.money;
                 pitch.save(function(err, pitch) {
                     if(err) {
                         sendResponse(res, 400, err);
@@ -55,11 +51,11 @@ module.exports.delete = function(req, res) {
         if(err) {
             sendResponse(res, 404, { message: 'Not found pitch' });
         } else {
-            let rent = pitch.rents.id(req.params.rentid);
-            if(!rent) {
-                sendResponse(res, 404, { message: 'Not found rent' });
+            let time = pitch.times.id(req.params.timeid);
+            if(!time) {
+                sendResponse(res, 404, { message: 'Not found time' });
             } else {
-                rent.remove();
+                time.remove();
                 pitch.save(function(err, pitch) {
                     if(err) {
                         sendResponse(res, 400, err);
