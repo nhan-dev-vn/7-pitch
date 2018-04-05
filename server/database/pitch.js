@@ -8,7 +8,7 @@ let reviewSchema = new mongoose.Schema({
 });
 
 let timeSchema = new mongoose.Schema({
-    time: [String, String],
+    time: [String],
     money: Number
 })
 
@@ -17,7 +17,7 @@ let rentSchema = new mongoose.Schema({
     phoneNumber: {type: String, required: true},
     numberPicth: Number,
     day: {type: Date, default: Date.now},
-    time: [String, String],
+    time: [String],
     money: Number
 });
 

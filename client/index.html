@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="vi">
+<style>
+    body{
+        min-width: 700px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch-7</title>
 
-<h1>My First Google Map</h1>
+    <!-- vendor -->
+    <!-- css -->
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/css/font-awesome.min.css">
+    <!-- js -->
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/angular-route.min.js"></script>
 
-<div id="googleMap" style="width:100%;height:400px;"></div>
+    <!-- angular module -->
+    <script src="app.js"></script>
+    <script src="home/home.js"></script>
+    <script src="pitch/pitch.js"></script>
+    <!-- angular component -->
+    <script src="component/navigation/navigation.js"></script>
+    <script src="component/footer/footer.js"></script>
 
-<script>
-function myMap() {
-var mapProp= {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:17,
-};
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
+</head>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqIl3kOw8RqQbME5s-LEjd6yDhi1bIKHQ&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
+<body ng-app="pitch7App">
+    <navigation></navigation>
+    <div ng-view></div>
+    <footer></footer>
 </body>
+
 </html>

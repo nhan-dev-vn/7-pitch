@@ -18,8 +18,10 @@ router.get('/user/list', user.getList);
 router.post('/pitch', pitch.add);
 //update
 router.put('/pitch/:pitchid', pitch.update);
-//get list pithes
+//get list pitches
 router.get('/pitch/list', pitch.getList);
+//get list pitches by distance
+router.get('/pitch/listByDistance/:lng/:lat/:maxDistance', pitch.getListByDistance);
 //get info a pitch
 router.get('/pitch/:pitchid', pitch.getInfo);
 

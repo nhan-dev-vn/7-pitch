@@ -1,20 +1,27 @@
-let app = angular.module('pitch7', []);
-app.controller('myCtrl', function($http, $scope) {
-    $scope.login = function() {
-        $http({
-            method: 'POST',
-            url: '/api/login',
-            json: true,
-            data: {
-                username: $scope.username,
-                password: $scope.password
-            }
-        }).then((response) => {
-            console.log(response);
-            $scope.name = response.data.username;
-            $scope.password = response.data.password;
-        }, (err) => {
-            console.log(err);
+(function () {
+    angular.module('pitch7App', ['ngRoute']);
+
+    function config($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'home/home.html',
+                controller: 'homeCtrl',
+                controllerAs: 'vm'
+            })
+
+            .when('/pitch/:pitchid', {
+                templateUrl: 'pitch/pitch.html',
+                controller: 'pitchCtrl',
+                controllerAs: 'vm'
+            })
+            .otherwise({ redirectTo: '/' });
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
         });
+
     }
-});
+    angular
+        .module('pitch7App')
+        .config(['$routeProvider', '$locationProvider', config]);
+})();
