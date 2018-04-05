@@ -48,22 +48,26 @@
         padding-left: 10px;
         border-bottom: 1px solid white;
     }
+
     #search {
         margin: 0;
         width: 90%;
         background: #fb8c05;
         color: #ffffff;
         border: none;
-        
-    }
-    input:focus {
-        outline: none !important;
 
+    }
+
+    .navigation input:focus {
+        outline: none !important;
         border: 1px solid #fb8c05;
     }
+
     @media only screen and (max-width: 300px) {
         /* For desktop: */
-        .search {width: 100px;}
+        .search {
+            width: 100px;
+        }
     }
 </style>
 <nav class="navigation">
@@ -83,12 +87,16 @@
         <div class="collapse navbar-collapse" id="myNavbar" style="border-top:white">
             <ul class="nav navbar-nav navbar-right">
                 <li class="in-out">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Đăng ký quản lý sân bóng
+                </li>
+                <li class="in-out">
                     <span class="glyphicon glyphicon-user"></span>
-                    Sign Up
+                    Đăng ký
                 </li>
                 <li class="in-out">
                     <span class="glyphicon glyphicon-log-in"></span>
-                    Login
+                    Đăng Nhập
                 </li>
             </ul>
         </div>
