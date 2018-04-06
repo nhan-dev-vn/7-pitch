@@ -6,7 +6,8 @@ module.exports = {
         './home/home.js',
         './pitch/pitch.js',
         './component/navigation/navigation.js',
-        './component/footer/footer.js'
+        './component/footer/footer.js',
+        './service/pitch-api-service.js'
     ],
     output: {
         path: path.resolve(__dirname),

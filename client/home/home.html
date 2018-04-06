@@ -1,9 +1,14 @@
 <style>
     #header {
-        height: 300px;
+        height: 400px;
         background: url('vendor/image/header.jpg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
+    }
+
+    #option {
+        height: 200px;
+        border-bottom: 1px solid #e0e0e0;
     }
 </style>
 <div class="container-fluid" style="padding: 0">
@@ -12,20 +17,11 @@
             <form style="padding-left: 30px;padding-top:80px">
                 <center>
                     <div class="form-group">
-                        <select class="form-control my-focus" id="sel1">
-                            <option>Huyền Anh</option>
-                            <option>Đông Đô</option>
-                            <option>Mic</option>
-                            <option>ĐH Ngoại Ngữ</option>
-                        </select>
+                        <select class="form-control my-focus" ng-model="vm.curPitch" ng-options="pitch.name for pitch in vm.pitches" ng-change="vm.time = vm.curPitch.times[0]"></select>
                         <br>
-                        <select class="form-control my-focus" id="sel2">
-                            <option>19:00 - 20:30</option>
-                            <option>20:30 - 22:00</option>
-                            <option>17:30 - 19:00</option>
-                            <option>7:00 - 8:30</option>
-                            <option>8:30 - 10:00</option>
-                        </select>
+                        <select class="form-control my-focus" ng-model="vm.time" ng-options="time.time for time in vm.curPitch.times"></select>
+                        <br>
+                        <input type="date" class="form-control my-focus my-ipt" id="nowDate" ng-model="vm.date">
                     </div>
                     <button class="btn my-btn">Đặt sân</button>
                 </center>
@@ -33,6 +29,63 @@
         </div>
         <div class="col-sm-6 col-xs12" style="float: right; text-align: right">
             <h3 class="color-white" style="padding-top: 20px;">Đặt sân bóng online nhanh chóng và dễ dàng</h3>
+        </div>
+    </div>
+    <div class="row" id="option">
+        <div class="col-sm-3 col-xs-12">
+            <h1 style="margin: 10px" class="center">
+                <i class="fa fa-search" style="color: #fb8c05;  font-size: 50px"></i>
+            </h1>
+            <h4 class="center">Thông tin sân bóng</h4>
+            <p class="center" style="color: #78909c">Địa điểm, giá sân, giờ mở cửa,... các sân bóng trong khu vực gần nơi bạn ở</p>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+            <h1 style="margin: 10px" class="center">
+                <i class="fa fa-calendar-check-o" style="color: #fb8c05; font-size: 50px" aria-hidden="true"></i>
+            </h1>
+            <h4 class="center">Đặt sân online</h4>
+            <p class="center" style="color: #78909c">Lựa chọn sân gần vị trí của bạn nhất, đặt sân online, tiện lợi, dễ dàng,...</p>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+            <h1 style="margin: 10px" class="center">
+                <i class="fa fa-pencil-square" style="color: #fb8c05; font-size: 50px" aria-hidden="true"></i>
+            </h1>
+            <h4 class="center">Đăng ký sân online</h4>
+            <p class="center" style="color: #78909c">Đặt thông tin sân bóng của bạn trên website, đơn giản, nhanh gọn.</p>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+            <h1 style="margin: 10px" class=" center">
+                <i class="fa fa-bullhorn" style="color: #fb8c05; font-size: 50px" aria-hidden="true"></i>
+            </h1>
+            <h4 class="center">Quảng bá sân bóng</h4>
+            <p class="center" style="color: #78909c">Quảng bá hình ảnh sân bóng, thu hút khách đến sân nhiều hơn, doanh thu tăng lên.</p>
+        </div>
+    </div>
+    <div class="row" id="list">
+        <h2 class="center">Danh sách sân bóng</h2>
+        <h5 class="center" style="color: #78909c">Nhanh tay đặt sân ngay hôm nay để được trải nghiệm sân bóng chất lượng cao cùng ưu đãi hấp dẫn!</h5>
+        <div class="col-sm-12 col-md-3 col-xs-3" ng-repeat="pitch in vm.pitches">
+            <div class="card-panel venue_item hoverable">
+                <a href="/pitch/">
+                    <img class="responsive-img" width="100%" height="200px" src="{{pitch.imgPath}}">
+                </a>
+                <div class="venue-details">
+                    <!-- <div>
+                        <a class="purple-text" href="/san-bong/ho-chi-minh/thu-duc">#Thủ Đức</a>
+                    </div> -->
+                    <h5 style="color:#fb8c05">
+                        <a style="color:#fb8c05" href="/dhnonglam">Sân bóng {{pitch.name}}</a>
+                        <span ng-if="pitch.rating>=1" class="glyphicon glyphicon-star"></span>
+                        <span ng-if="pitch.rating>=2" class="glyphicon glyphicon-star"></span>
+                        <span ng-if="pitch.rating>=3" class="glyphicon glyphicon-star"></span>
+                        <span ng-if="pitch.rating>=4" class="glyphicon glyphicon-star"></span>
+                        <span ng-if="pitch.rating>=5" class="glyphicon glyphicon-star"></span>
+                        <span style="float: right">{{pitch.distance}}</span>
+                    </h5>
+                    <p>
+                        <i class="fa fa-map-marker" style="font-size: 1.5rem" aria-hidden="true"></i> {{pitch.address}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

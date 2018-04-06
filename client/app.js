@@ -1,5 +1,5 @@
 (function () {
-    angular.module('pitch7App', ['ngRoute']);
+    angular.module('pitch7App', ['ngRoute', 'ngAnimate', 'toastr']);
 
     function config($routeProvider, $locationProvider) {
         $routeProvider

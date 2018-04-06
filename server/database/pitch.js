@@ -28,6 +28,7 @@ let pitchSchema = new mongoose.Schema({
     numberPitches: [Boolean],
     describe: String,
     coords: {type: [Number], index: '2dsphere'},
+    imgPath: String,
     reviews: [reviewSchema],
     times: [timeSchema],
     rents: [rentSchema]

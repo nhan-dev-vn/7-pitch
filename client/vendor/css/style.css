@@ -1,3 +1,9 @@
+body {
+    min-width: 700px;
+    background: #fafafa;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
 .my-focus:focus {
     outline: none !important;
     border: none;
@@ -18,4 +24,7 @@
 }
 li {
     list-style: none;
+}
+.center {
+    text-align: center;
 }

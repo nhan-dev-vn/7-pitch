@@ -112,7 +112,7 @@ module.exports.getListByDistance = function (req, res) {
     };
     var geoOptions = {
         spherical: true,
-        maxDistance: maxDistance*1000,  
+        maxDistance: maxDistance*1000000000,  
         num: 10
     };
     if ((!lng && lng!==0)||( !lat && lat!==0)){
@@ -141,6 +141,8 @@ module.exports.getListByDistance = function (req, res) {
                     name: doc.name,
                     address: doc.address,
                     rating: doc.rating,
+                    times: doc.times,
+                    imgPath: doc.imgPath,
                     _id: doc._id,
                 });
                 if(i==results.length-1)
