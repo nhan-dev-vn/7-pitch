@@ -1,0 +1,21 @@
+.my-focus:focus {
+    outline: none !important;
+    border: none;
+}
+.my-btn {
+    color: #fff;
+    background-color: #fb8c05;
+    border-color: none;
+}
+.color-white {
+    color: #fff;
+}
+.row {
+    margin: 0;
+}
+.container-fluid {
+    padding: 0;
+}
+li {
+    list-style: none;
+}

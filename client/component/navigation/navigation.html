@@ -58,17 +58,6 @@
 
     }
 
-    .navigation input:focus {
-        outline: none !important;
-        border: 1px solid #fb8c05;
-    }
-
-    @media only screen and (max-width: 300px) {
-        /* For desktop: */
-        .search {
-            width: 100px;
-        }
-    }
 </style>
 <nav class="navigation">
     <div class="container-fluid">
@@ -80,11 +69,11 @@
             </button>
             <div class="app-name" href="/">Pitch7</div>
             <div class="search">
-                <input type="text" placeholder="Nhập tên, địa chỉ để tìm sân" id="search">
+                <input class="my-focus" type="text" placeholder="Nhập tên, địa chỉ để tìm sân" id="search">
                 <i class="glyphicon glyphicon-search" style="color: #ffffff"></i>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar" style="border-top:white">
+        <div class="collapse navbar-collapse" id="myNavbar" style="border-top:white; padding-left: 30px">
             <ul class="nav navbar-nav navbar-right">
                 <li class="in-out">
                     <span class="glyphicon glyphicon-plus"></span>
