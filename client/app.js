@@ -1,5 +1,5 @@
 (function () {
-    angular.module('pitch7App', ['ngRoute', 'ngAnimate', 'toastr']);
+    angular.module('pitch7App', ['ngRoute', 'ngSanitize', 'toastr', 'angularModalService']);
 
     function config($routeProvider, $locationProvider) {
         $routeProvider
@@ -10,7 +10,7 @@
             })
 
             .when('/pitch/:pitchid', {
-                templateUrl: 'pitch/pitch.html',
+                templateUrl: '/pitch/pitch.html',
                 controller: 'pitchCtrl',
                 controllerAs: 'vm'
             })
@@ -21,7 +21,12 @@
         });
 
     }
+    function controller($scope) {
+        $scope.search = '';
+    }
+
     angular
         .module('pitch7App')
-        .config(['$routeProvider', '$locationProvider', config]);
+        .config(['$routeProvider', '$locationProvider', config])
+        .controller('myCtrl', controller);
 })();

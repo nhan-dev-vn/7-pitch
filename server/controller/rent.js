@@ -14,7 +14,8 @@ module.exports.add = function(req, res) {
                 username: req.body.username,
                 phoneNumber: req.body.phoneNumber,
                 time: req.body.time,
-                money: req.body.money
+                money: req.body.money,
+                day: req.body.day
             });
             pitch.save(function(err, pitch) {
                 if(err) {

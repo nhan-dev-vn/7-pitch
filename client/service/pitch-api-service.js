@@ -15,9 +15,27 @@
                 method: 'GET'
             });
         }
+        let filter;
+        let getPitch = function(pitchid) {
+            return $http({
+                url: '/api/pitch/' + pitchid,
+                method: 'GET'
+            });
+        }
+        let rentPitch = function(rentInfo) {
+            return $http({
+                url: '/api/pitch/' + rentInfo.pitchid + '/rent',
+                method: 'POST',
+                json: true,
+                data: rentInfo
+            });
+        }
         return {
             locationByCoords: locationByCoords,
-            locationList: locationList
+            locationList: locationList,
+            getPitch: getPitch,
+            filter: filter,
+            rentPitch: rentPitch
         }
     }
 })();

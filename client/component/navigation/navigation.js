@@ -6,7 +6,10 @@
             controller: controller,
             controllerAs: 'vm'
         });
-    function controller() {
-
+    function controller(pitchApiService) {
+        let vm = this;
+        vm.searchChange = function() {
+            pitchApiService.filter = vm.search;
+        }
     }
 })();

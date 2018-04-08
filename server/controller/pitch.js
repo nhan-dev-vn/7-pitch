@@ -6,17 +6,15 @@ let sendResponse = function (res, status, content) {
 };
 
 module.exports.add = function (req, res) {
-    let numberPitches = [];
-    for(let i = 1; i<= req.body.numberPitches; i++) {
-        numberPitches.push(false);
-    };
     Pitch.create({
         name: req.body.name,
         address: req.body.address,
+        phone: req.body.phone,
         rating: req.body.rating,
-        numberPitches: numberPitches,
+        numberPitches: req.body.numberPitches,
         describe: req.body.describe,
-        coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
+        coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
+        imgPath: req.body.imgPath
     }, function (err, pitch) {
         if (err) {
             sendResponse(res, 400, err);
@@ -44,16 +42,14 @@ module.exports.add = function (req, res) {
     });
 }
 module.exports.update = function (req, res) {
-    let numberPitches = [];
-    for(let i = 1; i<= req.body.numberPitches; i++) {
-        numberPitches.push(false);
-    };
     Pitch.update({ _id: req.params.pitchid }, {
         $set: {
             name: req.body.name,
             address: req.body.address,
+            phone: req.body.phone,
+            imgPath: req.body.imgPath,
             rating: req.body.rating,
-            numberPitches: numberPitches,
+            numberPitches: req.body.numberPitches,
             describe: req.body.describe,
             coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
         }
@@ -85,6 +81,9 @@ module.exports.getList = function (req, res) {
         } else if (!pitches) {
             sendResponse(res, 404, { message: 'Not have any pitch' });
         } else {
+            pitches.forEach(function(pitch) {
+                pitch.distance = '';
+            })
             sendResponse(res, 200, pitches);
         }
     });
@@ -142,6 +141,9 @@ module.exports.getListByDistance = function (req, res) {
                     address: doc.address,
                     rating: doc.rating,
                     times: doc.times,
+                    rents: doc.rents,
+                    phone: doc.phone,
+                    numberPitches: doc.numberPitches,
                     imgPath: doc.imgPath,
                     _id: doc._id,
                 });
