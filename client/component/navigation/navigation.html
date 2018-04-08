@@ -12,21 +12,15 @@
         border: 2px solid white;
     }
 
-    .navbar-brand {
-        color: white;
-
-
-    }
-
     .in-out {
         cursor: pointer;
         color: white;
         padding: 10px;
+        font-weight: bold;
     }
 
     .app-name {
         margin-left: 50px;
-        color: white;
         text-decoration: none;
         float: left;
         height: 40px;
@@ -34,7 +28,10 @@
         font-size: 25px;
         line-height: 20px;
         font-weight: bold;
-        cursor: pointer;
+    }
+    .app-name:focus, .app-name:hover{
+        text-decoration: none;
+        color: white;
     }
 
     .search {
@@ -48,25 +45,16 @@
         padding-left: 10px;
         border-bottom: 1px solid white;
     }
+
     #search {
         margin: 0;
         width: 90%;
         background: #fb8c05;
-        color: #ffffff;
         border: none;
-        
     }
-    input:focus {
-        outline: none !important;
 
-        border: 1px solid #fb8c05;
-    }
-    @media only screen and (max-width: 300px) {
-        /* For desktop: */
-        .search {width: 100px;}
-    }
 </style>
-<nav class="navigation">
+<nav class="navigation navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -74,21 +62,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="app-name" href="/">Pitch7</div>
+            <a class="app-name color-white" href="/">Pitch7</a>
             <div class="search">
-                <input type="text" placeholder="Nhập tên, địa chỉ để tìm sân" id="search">
-                <i class="glyphicon glyphicon-search" style="color: #ffffff"></i>
+                <input class="my-focus color-white" type="text" placeholder="Nhập tên, địa chỉ để tìm sân" 
+                        ng-model="vm.search" id="search"
+                        ng-change="vm.searchChange()">
+                <i class="glyphicon glyphicon-search color-white"></i>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar" style="border-top:white">
+        <div class="collapse navbar-collapse" id="myNavbar" style="border-top:white; padding-left: 30px">
             <ul class="nav navbar-nav navbar-right">
-                <li class="in-out">
-                    <span class="glyphicon glyphicon-user"></span>
-                    Sign Up
+                <li class="in-out color-white">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Đăng ký quản lý sân bóng
                 </li>
-                <li class="in-out">
+                <li class="in-out color-white">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Đăng ký
+                </li>
+                <li class="in-out color-white">
                     <span class="glyphicon glyphicon-log-in"></span>
-                    Login
+                    Đăng Nhập
                 </li>
             </ul>
         </div>
