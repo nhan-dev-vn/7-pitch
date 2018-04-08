@@ -1,7 +1,7 @@
 angular
     .module('pitch7App')
     .service('geolocation', geolocation);
-function geolocation () {
+function geolocation (spinner) {
     var getPosition = function (cbSuccess, cbError, cbNoGeo) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(cbSuccess, cbError);

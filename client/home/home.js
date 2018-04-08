@@ -4,23 +4,26 @@
         .controller('homeCtrl', homeCtrl);
     function homeCtrl($scope, geolocation, pitchApiService, toastr, spinner, ModalService) {
         var vm = this;
+        let check = false;
+        spinner.show();
         vm.getData = function (position) {
-            var lat = position.coords.latitude,
-                lng = position.coords.longitude;
-            spinner.show();
-            pitchApiService.locationByCoords(lat, lng).then(
-                function successCallback(data) {
-                    spinner.hide();
-                    vm.pitches = data.data;
-                    vm.curPitch = vm.pitches[0];
-                    vm.time = vm.curPitch.times[0];
-                }, function errorCallback(e) {
-                    locationList();
-                }
-            );
+            if(!check){
+                var lat = position.coords.latitude,
+                    lng = position.coords.longitude;
+                pitchApiService.locationByCoords(lat, lng).then(
+                    function successCallback(data) {
+                        spinner.hide();
+                        check = true;
+                        vm.pitches = data.data;
+                        vm.curPitch = vm.pitches[0];
+                        vm.time = vm.curPitch.times[0];
+                    }, function errorCallback(e) {
+                        locationList();
+                    }
+                );
+            }
         };
         function locationList() {
-            spinner.show();
             pitchApiService.locationList().then(
                 function (data) {
                     spinner.hide();
@@ -33,6 +36,12 @@
                 }
             )
         }
+        setTimeout(function() {
+            if(!check){
+                check= true;
+                locationList();
+            }
+        }, 3000);
         vm.showError = function (error) {
             locationList();
         };
@@ -58,7 +67,7 @@
                 else if(nowDate.getMonth()==vm.date.getMonth()) {
                         if(nowDate.getDate()>vm.date.getDate())
                             check = false;
-                } else if(nowDate.getDate()>vm.data.getDate())
+                } else if(nowDate.getDate()>vm.date.getDate())
                             check = false;
             }
             if(check) {
@@ -89,7 +98,7 @@
                                 day: date
                             }
                             ModalService.showModal({
-                                templateUrl: "dialog/rent-pitch/rent-pitch.html",
+                                templateUrl: "dialog/rent-pitch/rent-pitch-modal.html",
                                 controller: "rentPitch",
                                 controllerAs: "modal",
                                 inputs: {
@@ -98,7 +107,6 @@
                             }).then(function (modal) {
                                 modal.element.modal();
                                 modal.close.then(function (result) {
-                                    toastr.success('Đặt sân thành công');
                                 });
                             });
                         }

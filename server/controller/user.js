@@ -16,7 +16,7 @@ module.exports.register = function (req, res) {
         password: md5(req.body.password)
     }, function (err, user) {
         if (err) {
-            sendResponse(res, 400, {message: "Username existed"});
+            sendResponse(res, 400, {message: "Tên đăng nhập đã tồn tại"});
         } else {
             sendResponse(res, 200, {
                 message: "Created"
@@ -33,7 +33,7 @@ module.exports.login = function (req, res) {
         if(err) {
             sendResponse(res, 400, err);
         } else if (!user) {
-            sendResponse(res, 404, { message: 'Not found' });
+            sendResponse(res, 404, { message: 'Tên đăng nhập hoặc mật khẩu khôn đúng' });
         } else {
             sendResponse(res, 200, user);
         }
@@ -45,7 +45,7 @@ module.exports.getList = function(req, res) {
         if(err) {
             sendResponse(res, 400, err);
         } else if (!users) {
-            sendResponse(res, 404, { message: 'Not have any user' });
+            sendResponse(res, 404, { message: 'Không tìm thấy người dùng nào' });
         } else {
             sendResponse(res, 200, users);
         }

@@ -9,6 +9,9 @@ let userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    admin: {
+        type: String
     }
 });
 

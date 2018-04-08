@@ -30,12 +30,31 @@
                 data: rentInfo
             });
         }
+        let register = function(user) {
+            return $http({
+                url: '/api/register',
+                method: 'POST',
+                json: true,
+                data: user
+            });
+        }
+        let login = function(user) {
+            return $http({
+                url: '/api/login',
+                method: 'POST',
+                json: true,
+                data: user
+            });
+        }
         return {
             locationByCoords: locationByCoords,
             locationList: locationList,
             getPitch: getPitch,
             filter: filter,
-            rentPitch: rentPitch
+            rentPitch: rentPitch,
+            user: {},
+            register: register, 
+            login: login
         }
     }
 })();

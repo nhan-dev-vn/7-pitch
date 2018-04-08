@@ -1,6 +1,7 @@
 body {
     min-width: 700px;
     background: #fafafa;
+    padding: 0;
     font-size: 12px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -30,4 +31,11 @@ li {
 }
 .center {
     text-align: center;
+}
+.form-group {
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+}
+.form-control {
+    height: 30px;
 }

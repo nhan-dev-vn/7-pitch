@@ -8,7 +8,7 @@ let sendResponse = function (res, status, content) {
 module.exports.add = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             pitch.rents.push({
                 username: req.body.username,
@@ -30,11 +30,11 @@ module.exports.add = function(req, res) {
 module.exports.update = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let rent = pitch.rents.id(req.params.rentid);
             if(!rent) {
-                sendResponse(res, 404, { message: 'Not found rent' });
+                sendResponse(res, 404, { message: 'Không tìm thấy thông tin' });
             } else {
                 rent.username = req.body.username;
                 rent.phoneNumber = req.body.phoneNumber;
@@ -54,11 +54,11 @@ module.exports.update = function(req, res) {
 module.exports.delete = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let rent = pitch.rents.id(req.params.rentid);
             if(!rent) {
-                sendResponse(res, 404, { message: 'Not found rent' });
+                sendResponse(res, 404, { message: 'Không tìm thấy thông tin' });
             } else {
                 rent.remove();
                 pitch.save(function(err, pitch) {

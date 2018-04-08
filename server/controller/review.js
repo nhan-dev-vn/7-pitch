@@ -16,7 +16,7 @@ function updateRating(reviews, cb) {
 module.exports.add = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             pitch.reviews.push({
                 username: req.body.username,
@@ -45,11 +45,11 @@ module.exports.add = function(req, res) {
 module.exports.update = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let review = pitch.reviews.id(req.params.reviewid);
             if(!review) {
-                sendResponse(res, 404, { message: 'Not found review' });
+                sendResponse(res, 404, { message: 'Không tìm thấy bình luận' });
             } else {
                 review.username = req.body.username;
                 review.rating = req.body.rating;
@@ -77,11 +77,11 @@ module.exports.update = function(req, res) {
 module.exports.delete = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let review = pitch.reviews.id(req.params.reviewid);
             if(!review) {
-                sendResponse(res, 404, { message: 'Not found review' });
+                sendResponse(res, 404, { message: 'Không tìm thấy bình luận' });
             } else {
                 review.remove();
                 pitch.save(function(err, pitch) {

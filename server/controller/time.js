@@ -8,7 +8,7 @@ let sendResponse = function (res, status, content) {
 module.exports.add = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             pitch.times.push({
                 time: req.body.time,
@@ -27,11 +27,11 @@ module.exports.add = function(req, res) {
 module.exports.update = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let time = pitch.times.id(req.params.timeid);
             if(!time) {
-                sendResponse(res, 404, { message: 'Not found time' });
+                sendResponse(res, 404, { message: 'Chưa có khung giờ này' });
             } else {
                 time.time = req.body.time;
                 time.money = req.body.money;
@@ -49,11 +49,11 @@ module.exports.update = function(req, res) {
 module.exports.delete = function(req, res) {
     Pitch.findById(req.params.pitchid, function(err, pitch) {
         if(err) {
-            sendResponse(res, 404, { message: 'Not found pitch' });
+            sendResponse(res, 404, { message: 'Sân chưa được đăng ký' });
         } else {
             let time = pitch.times.id(req.params.timeid);
             if(!time) {
-                sendResponse(res, 404, { message: 'Not found time' });
+                sendResponse(res, 404, { message: 'Chưa có khung giờ này' });
             } else {
                 time.remove();
                 pitch.save(function(err, pitch) {

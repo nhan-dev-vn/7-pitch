@@ -5,7 +5,7 @@ let bodyParser = require('body-parser');
 
 require('./database/db-connect');
 
-let port = 3001; 
+let port = 3002; 
 
 let routerApi = require('./router/index');
 app.use(express.static(path.join(__dirname, '../client')));

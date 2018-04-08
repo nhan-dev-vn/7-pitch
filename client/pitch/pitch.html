@@ -1,9 +1,9 @@
 <style>
-    #header {}
+   
 </style>
 <div class="container-fluid">
-    <div class="row" id="header" style="background: url('/{{vm.pitch.imgPath}}');height: 400px;background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container" style="text-align:left; margin-top: 25%">
+    <div class="row" id="header" style="position:relative; background: url('/{{vm.pitch.imgPath}}');height: 400px;background-repeat: no-repeat;background-size: 100% 100%;">
+        <div class="container" style="text-align:center; position: absolute; bottom:40px">
             <h1 class="color-orange">Sân bóng {{vm.pitch.name}}</h1>
             <p class="color-white">
                 <i class="fa fa-map-marker" style="font-size: 1.5rem"></i> {{vm.pitch.address}}
@@ -39,7 +39,7 @@
                                 <br>
                                 <input type="date" class="form-control my-focus my-ipt" id="nowDate" ng-model="vm.date">
                             </div>
-                            <button class="btn my-btn">Đặt sân</button>
+                            <button class="btn my-btn" ng-click="vm.rent()">Đặt sân</button>
                         </form>
                     </div>
                 </div>
