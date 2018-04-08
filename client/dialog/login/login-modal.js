@@ -6,10 +6,9 @@
         var vm = this;
         vm.login = true;
         vm.closeModal = function () {
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            $('body').css("padding-right", "0px");
-            close(vm, 500);
+            // $('body').removeClass('modal-open');
+            // $('.modal-backdrop').remove();
+            close(null);
         }
         vm.clickButtonRegister = function () {
             console.log(vm.user);
@@ -34,10 +33,8 @@
                 function (data) {
                     if (data.status == 200) {
                         pitchApiService.user = vm.user;
-                        $('body').removeClass('modal-open');
-                        $('.modal-backdrop').remove();
-                        $('body').css("padding-right", "0px");
-                        close(vm.user, 500);
+                        
+                        close(vm.user);
                     } else {
                         toastr.error(data.data.message);
                     }

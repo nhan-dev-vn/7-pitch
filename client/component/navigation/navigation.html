@@ -76,34 +76,14 @@
                     <span class="glyphicon glyphicon-plus"></span>
                     Đăng ký quản lý sân bóng
                 </li>
-                <li class="in-out color-white" ng-show="vm.isLogin()">
-                    <span>{{vm.user.username}}</span>
-                    <span class="glyphicon glyphicon-log-out" style="cursor:pointer;" ng-click="vm.logout()"></span>
+                <li class="in-out color-white" style="cursor:default" ng-show="vm.isLogin()">
+                    {{vm.user.username}} <span class="glyphicon glyphicon-log-out" style="cursor:pointer;" ng-click="vm.logout()"></span>
                 </li>
-                <li class="in-out color-white" ng-show="!vm.isLogin()" >
-                    <span class="glyphicon glyphicon-log-in" data-toggle="modal" data-target="#login">
-                        Đăng Nhập
-                    </span>
-                    
-                    <!-- <div ng-include="'/dialog/login/login-modal.html'"></div> -->
+                <li class="in-out color-white" ng-show="!vm.isLogin()" ng-click="vm.login()">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    Đăng Nhập
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="modal fade" id="login" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>This is a large modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>

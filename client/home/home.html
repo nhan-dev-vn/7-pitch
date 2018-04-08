@@ -17,6 +17,7 @@
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 2px;
+        overflow-y: overlay;
     }
 
     .pitch-body {
@@ -26,17 +27,15 @@
 <div class="container-fluid" style="padding: 0">
     <div class="row" id="header">
         <div class="col-sm-3 col-xs-12">
-            <form style="padding-left: 30px;padding-top:80px">
-                <center>
-                    <div class="form-group">
-                        <select class="form-control my-focus" ng-model="vm.curPitch" ng-options="pitch.name for pitch in vm.pitches" ng-change="vm.time = vm.curPitch.times[0]"></select>
-                        <br>
-                        <select class="form-control my-focus" ng-model="vm.time" ng-options="time.time for time in vm.curPitch.times"></select>
-                        <br>
-                        <input type="date" class="form-control my-focus my-ipt" id="nowDate" ng-model="vm.date">
-                    </div>
-                    <button class="btn my-btn" ng-click="vm.rent()">Đặt sân</button>
-                </center>
+            <form class="text-center" style="padding-left: 30px;padding-top:80px">
+                <div class="form-group">
+                    <select class="form-control my-focus" ng-model="vm.curPitch" ng-options="pitch.name for pitch in vm.pitches" ng-change="vm.time = vm.curPitch.times[0]"></select>
+                    <br>
+                    <select class="form-control my-focus" ng-model="vm.time" ng-options="time.time for time in vm.curPitch.times"></select>
+                    <br>
+                    <input type="date" class="form-control my-focus my-ipt" id="nowDate" ng-model="vm.date">
+                </div>
+                <button class="btn my-btn" ng-click="vm.rent()">Đặt sân</button>
             </form>
         </div>
         <div class="col-sm-6 col-xs-12" style="float: right; text-align: center">

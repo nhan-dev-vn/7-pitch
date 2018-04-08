@@ -19,7 +19,7 @@ module.exports.register = function (req, res) {
             sendResponse(res, 400, {message: "Tên đăng nhập đã tồn tại"});
         } else {
             sendResponse(res, 200, {
-                message: "Created"
+                message: "Đăng ký thành công"
             });
         }
     });

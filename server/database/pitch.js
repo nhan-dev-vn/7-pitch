@@ -4,7 +4,7 @@ let reviewSchema = new mongoose.Schema({
     username: {type: String, required: true},
     rating: {type: Number, required: true, min: 0, max: 5},
     reviewText: {type: String, required: true},
-    createdOn: {type: Date, default: Date.now}
+    createdOn: String
 });
 
 let timeSchema = new mongoose.Schema({

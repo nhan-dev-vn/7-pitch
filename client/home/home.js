@@ -7,7 +7,7 @@
         let check = false;
         spinner.show();
         vm.getData = function (position) {
-            if(!check){
+            if (!check) {
                 var lat = position.coords.latitude,
                     lng = position.coords.longitude;
                 pitchApiService.locationByCoords(lat, lng).then(
@@ -36,9 +36,9 @@
                 }
             )
         }
-        setTimeout(function() {
-            if(!check){
-                check= true;
+        setTimeout(function () {
+            if (!check) {
+                check = true;
                 locationList();
             }
         }, 3000);
@@ -59,18 +59,18 @@
             let date = document.getElementById("nowDate").value;
             let nowDate = new Date();
             let check = true;
-            if(nowDate.getFullYear()>vm.date.getFullYear())
+            if (nowDate.getFullYear() > vm.date.getFullYear())
                 check = false;
-            else if(nowDate.getFullYear()==vm.date.getFullYear()) {
-                if(nowDate.getMonth()>vm.date.getMonth())
+            else if (nowDate.getFullYear() == vm.date.getFullYear()) {
+                if (nowDate.getMonth() > vm.date.getMonth())
                     check = false;
-                else if(nowDate.getMonth()==vm.date.getMonth()) {
-                        if(nowDate.getDate()>vm.date.getDate())
-                            check = false;
-                } else if(nowDate.getDate()>vm.date.getDate())
-                            check = false;
+                else if (nowDate.getMonth() == vm.date.getMonth()) {
+                    if (nowDate.getDate() > vm.date.getDate())
+                        check = false;
+                } else if (nowDate.getDate() > vm.date.getDate())
+                    check = false;
             }
-            if(check) {
+            if (check) {
                 pitchApiService.getPitch(vm.curPitch._id).then(
                     function (data) {
                         vm.curPitch.rents = data.data.rents;
@@ -97,6 +97,7 @@
                                 money: money,
                                 day: date
                             }
+                            $('html').addClass('hidden-scroll');
                             ModalService.showModal({
                                 templateUrl: "dialog/rent-pitch/rent-pitch-modal.html",
                                 controller: "rentPitch",
@@ -107,6 +108,9 @@
                             }).then(function (modal) {
                                 modal.element.modal();
                                 modal.close.then(function (result) {
+                                    $('html').removeClass('hidden-scroll');
+                                    $('body').removeClass('modal-open');
+                                    $('.modal-backdrop').remove();
                                 });
                             });
                         }
@@ -115,9 +119,9 @@
                     }
                 );
             } else {
-                toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1,11)+ ' qua rồi, hãy chọn ngày khác');
+                toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1, 11) + ' qua rồi, hãy chọn ngày khác');
             }
-            
+
         }
     }
 })();

@@ -3,20 +3,29 @@
         .module('pitch7App')
         .controller('pitchCtrl', pitchCtrl);
     function pitchCtrl($routeParams, spinner, pitchApiService, toastr, $sce, ModalService) {
+        window.scrollTo(0, 0);
         var vm = this;
+        vm.ratings = [1,2,3,4,5];
+        vm.review = {rating: 1};
+        vm.isLogin = function() {
+            vm.user = pitchApiService.user;
+            if(pitchApiService.user.username)
+                return true;
+            return false;
+        }
         spinner.show();
         pitchApiService.getPitch($routeParams.pitchid).then(
-            function(data) {
+            function (data) {
                 spinner.hide();
                 vm.pitch = data.data;
                 vm.time = vm.pitch.times[0];
-            }, function(e) {
+            }, function (e) {
                 spinner.hide();
                 toastr.error('Get info of pitch error');
             }
         );
-        vm.getIframeSrc = function (x1,x2){
-            return $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?q=' + x1 + ',' + x2 + '&key=AIzaSyDp0iMIK8nUHR_1zEhhrlRgBAgvh93vWHg&zoom=15')  ;
+        vm.getIframeSrc = function (x1, x2) {
+            return $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?q=' + x1 + ',' + x2 + '&key=AIzaSyDp0iMIK8nUHR_1zEhhrlRgBAgvh93vWHg&zoom=15');
         };
         vm.date = new Date();
         document.getElementById("nowDate").valueAsDate = vm.date;
@@ -25,18 +34,18 @@
             let date = document.getElementById("nowDate").value;
             let nowDate = new Date();
             let check = true;
-            if(nowDate.getFullYear()>vm.date.getFullYear())
+            if (nowDate.getFullYear() > vm.date.getFullYear())
                 check = false;
-            else if(nowDate.getFullYear()==vm.date.getFullYear()) {
-                if(nowDate.getMonth()>vm.date.getMonth())
+            else if (nowDate.getFullYear() == vm.date.getFullYear()) {
+                if (nowDate.getMonth() > vm.date.getMonth())
                     check = false;
-                else if(nowDate.getMonth()==vm.date.getMonth()) {
-                        if(nowDate.getDate()>vm.date.getDate())
-                            check = false;
-                } else if(nowDate.getDate()>vm.date.getDate())
-                            check = false;
+                else if (nowDate.getMonth() == vm.date.getMonth()) {
+                    if (nowDate.getDate() > vm.date.getDate())
+                        check = false;
+                } else if (nowDate.getDate() > vm.date.getDate())
+                    check = false;
             }
-            if(check) {
+            if (check) {
                 pitchApiService.getPitch(vm.pitch._id).then(
                     function (data) {
                         vm.pitch.rents = data.data.rents;
@@ -63,6 +72,7 @@
                                 money: money,
                                 day: date
                             }
+                            $('html').addClass('hidden-scroll');
                             ModalService.showModal({
                                 templateUrl: "/dialog/rent-pitch/rent-pitch-modal.html",
                                 controller: "rentPitch",
@@ -73,6 +83,9 @@
                             }).then(function (modal) {
                                 modal.element.modal();
                                 modal.close.then(function (result) {
+                                    $('html').removeClass('hidden-scroll');
+                                    $('body').removeClass('modal-open');
+                                    $('.modal-backdrop').remove();
                                 });
                             });
                         }
@@ -81,9 +94,9 @@
                     }
                 );
             } else {
-                toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1,11)+ ' qua rồi, hãy chọn ngày khác');
+                toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1, 11) + ' qua rồi, hãy chọn ngày khác');
             }
-            
+
         }
     }
 })();

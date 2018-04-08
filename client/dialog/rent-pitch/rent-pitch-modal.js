@@ -2,20 +2,18 @@
     angular
         .module('pitch7App')
         .controller('rentPitch', controller);
-    function controller(ModalService, pitchApiService, rentInfo, close) {
+    function controller(ModalService, pitchApiService, rentInfo, close, toastr) {
         var vm = this;
-        console.log(rentInfo);
         vm.closeModal = function() {
-            close(vm, 500);
+            close(null);
         }
         vm.clickButtonOk = function() {
             pitchApiService.rentPitch(rentInfo).then(
                 function(data) {
-                    console.log(data);
                     toastr.success('Đặt sân thành công');
-                    close(vm, 500);
+                    close(null);
                 }, function(err) {
-                    console.log(err);
+                    toastr.error(err.data.message);
                 }
             )
         }

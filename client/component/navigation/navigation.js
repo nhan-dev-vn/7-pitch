@@ -18,20 +18,25 @@
             return false;
         }
         vm.login = function () {
+            $('html').addClass('hidden-scroll');
             ModalService.showModal({
                 templateUrl: "/dialog/login/login-modal.html",
                 controller: "login",
                 controllerAs: "modal"
             }).then(function (modal) {
                 modal.element.modal();
-                $('body').css("padding-right", "0px");
                 modal.close.then(function (result) {
-                    $('body').css("padding-right", "0px");
-
+                    $('html').removeClass('hidden-scroll');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
                     if (result)
                         vm.user = result;
                 });
             });
+        }
+        vm.logout = function() {
+            pitchApiService.user = {};
+            vm.user = {};
         }
     }
 })();
