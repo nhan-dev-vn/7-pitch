@@ -46,8 +46,10 @@
                     check = false;
             }
             if (check) {
+                spinner.show();
                 pitchApiService.getPitch(vm.pitch._id).then(
                     function (data) {
+                        spinner.hide();
                         vm.pitch.rents = data.data.rents;
                         let numberOfPitch = vm.pitch.numberPitches;
                         for (let rent of vm.pitch.rents) {
@@ -66,8 +68,6 @@
                             }
                             let rentInfo = {
                                 pitchid: vm.pitch._id,
-                                username: 'nhan',
-                                phoneNumber: '01633461337',
                                 time: vm.time.time,
                                 money: money,
                                 day: date
@@ -90,13 +90,48 @@
                             });
                         }
                     }, function (error) {
+                        spinner.hide();
                         toastr.error('Get info pitch erro');
                     }
                 );
             } else {
                 toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1, 11) + ' qua rồi, hãy chọn ngày khác');
             }
-
+        }
+    
+        vm.addReview = function() {
+            vm.review.username = vm.user.username;
+            vm.review.pitchid = vm.pitch._id;
+            spinner.show();
+            pitchApiService.addReview(vm.review).then(
+                function(data) {
+                    spinner.hide();
+                    vm.review = {
+                        rating: 1,
+                        reviewText: ''
+                    }
+                    vm.pitch = data.data;
+                }, function(err) {
+                    spinner.hide();
+                    toastr.error('Chưa thêm được nhận xét');
+                }
+            );
+        }
+        // vm.editReview = function(reviewid) {
+        //     spinner.show();
+        //     pitchApiService.editReview(vm.review)
+        // }
+        vm.deleteReview = function(reviewid) {
+            spinner.show();
+            pitchApiService.deleteReview(vm.pitch._id, reviewid).then(
+                function(data) {
+                    spinner.hide();
+                    vm.pitch = data.data;
+                }, function(err) {
+                    spinner.hide();
+                    toastr.error('Chưa xóa được nhận xét')
+                }
+            );
         }
     }
 })();

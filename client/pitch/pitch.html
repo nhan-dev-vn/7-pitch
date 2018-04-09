@@ -101,9 +101,11 @@
                             <span style="float: right">{{review.createdOn}}</span>
                         </div>
                         <div class="panel-body">
-                            {{review.reviewText}}
-                            <span ng-show="vm.user.username==review.username" class="glyphicon glyphicon-trash" style="float: right; margin-left:10px; cursor:poiter"></span>
-                            <span ng-show="vm.user.username==review.username" class="glyphicon glyphicon-pencil" style="float: right;cursor:poiter"></span>
+                            <span ng-bind-html="review.reviewText"></span>
+                            <span ng-show="vm.user.username==review.username" ng-click="vm.deleteReview(review._id)"
+                                class="glyphicon glyphicon-trash" style="float: right; margin-left:10px; cursor:pointer"></span>
+                            <!-- <span ng-show="vm.user.username==review.username" ng-click="vm.editReview(review)"
+                                class="glyphicon glyphicon-pencil" style="float: right;cursor:pointer"></span> -->
                         </div>
                     </div>
                     <div class="panel panel-warning" ng-show="vm.isLogin()">

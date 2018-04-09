@@ -7,7 +7,11 @@ module.exports = {
         './pitch/pitch.js',
         './component/navigation/navigation.js',
         './component/footer/footer.js',
-        './service/pitch-api-service.js'
+        './service/pitch-api-service.js',
+        './service/geolocation-service.js',
+        './service/spinner.js',
+        './dialog/login/login-modal.js',
+        './dialog/rent-pitch/rent-pitch-modal.js'
     ],
     output: {
         path: path.resolve(__dirname),

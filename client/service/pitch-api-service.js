@@ -46,6 +46,28 @@
                 data: user
             });
         }
+        let addReview = function(review) {
+            return $http({
+                url: '/api/pitch/' + review.pitchid + '/review',
+                method: 'POST',
+                json: true,
+                data: review
+            });
+        }
+        let editReview = function(review) {
+            return $http({
+                url: '/api/pitch/' + review.pitchid + '/review/' + review.reivewid,
+                method: 'PUT',
+                json: true,
+                data: review
+            });
+        }
+        let deleteReview = function(pitchid, reivewid) {
+            return $http({
+                url: '/api/pitch/' + pitchid + '/review/' + reivewid,
+                method: 'DELETE'
+            });
+        }
         return {
             locationByCoords: locationByCoords,
             locationList: locationList,
@@ -54,7 +76,10 @@
             rentPitch: rentPitch,
             user: {},
             register: register, 
-            login: login
+            login: login,
+            addReview: addReview,
+            editReview: editReview,
+            deleteReview: deleteReview
         }
     }
 })();

@@ -6,6 +6,26 @@
         var vm = this;
         let check = false;
         spinner.show();
+        function locationList() {
+            pitchApiService.locationList().then(
+                function (data) {
+                    spinner.hide();
+                    vm.pitches = data.data;
+                    vm.curPitch = vm.pitches[0];
+                    vm.time = vm.curPitch.times[0];
+                }, function (e) {
+                    spinner.hide();
+                    toastr.error('Get list pitches error');
+                }
+            )
+        }
+        setTimeout(function () {
+            if (!check) {
+                check = true;
+                console.log('3000');
+                locationList();
+            }
+        }, 3000);
         vm.getData = function (position) {
             if (!check) {
                 var lat = position.coords.latitude,
@@ -23,29 +43,12 @@
                 );
             }
         };
-        function locationList() {
-            pitchApiService.locationList().then(
-                function (data) {
-                    spinner.hide();
-                    vm.pitches = data.data;
-                    vm.curPitch = vm.pitches[0];
-                    vm.time = vm.curPitch.times[0];
-                }, function (e) {
-                    spinner.hide();
-                    toastr.error('Get list pitches error');
-                }
-            )
-        }
-        setTimeout(function () {
-            if (!check) {
-                check = true;
-                locationList();
-            }
-        }, 3000);
         vm.showError = function (error) {
+            console.log('looi');
             locationList();
         };
         vm.noGeo = function () {
+            console.log('geo loi');
             locationList();
         };
         geolocation.getPosition(vm.getData, vm.showError, vm.noGeo);
@@ -71,8 +74,10 @@
                     check = false;
             }
             if (check) {
+                spinner.show();
                 pitchApiService.getPitch(vm.curPitch._id).then(
                     function (data) {
+                        spinner.hide();
                         vm.curPitch.rents = data.data.rents;
                         let numberOfPitch = vm.curPitch.numberPitches;
                         for (let rent of vm.curPitch.rents) {
@@ -91,8 +96,6 @@
                             }
                             let rentInfo = {
                                 pitchid: vm.curPitch._id,
-                                username: 'nhan',
-                                phoneNumber: '01633461337',
                                 time: vm.time.time,
                                 money: money,
                                 day: date
@@ -115,13 +118,13 @@
                             });
                         }
                     }, function (error) {
+                        spinner.hide();
                         toastr.error('Get info pitch erro');
                     }
                 );
             } else {
                 toastr.error('Ngày ' + JSON.stringify(vm.date).slice(1, 11) + ' qua rồi, hãy chọn ngày khác');
             }
-
         }
     }
 })();

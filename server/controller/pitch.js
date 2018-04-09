@@ -10,7 +10,7 @@ module.exports.add = function (req, res) {
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
-        rating: req.body.rating,
+        rating: 0,
         numberPitches: req.body.numberPitches,
         describe: req.body.describe,
         coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],

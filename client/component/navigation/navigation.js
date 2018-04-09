@@ -38,5 +38,21 @@
             pitchApiService.user = {};
             vm.user = {};
         }
+        vm.manaPitch = function() {
+            $('html').addClass('hidden-scroll');
+            ModalService.showModal({
+                templateUrl: "/dialog/mana-pitch/mana-pitch-modal.html",
+                controller: "manaPitch",
+                controllerAs: "modal"
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    $('html').removeClass('hidden-scroll');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    
+                });
+            });
+        }
     }
 })();

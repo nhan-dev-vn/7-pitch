@@ -6,11 +6,35 @@
                 <h4 class="modal-title">Thanh toán</h4>
             </div>
             <div class="modal-body">
-
-
-            </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn btn-sm btn-primary" ng-click="modal.clickButtonOk()" data-dismiss="modal">OK</button>
+                <form class="form-horizontal" ng-submit="modal.clickButtonOk()">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-xs-3">Họ tên</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input class="form-control" placeholder="Nhập họ tên" ng-model="modal.name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-xs-3">Số điện thoại</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input class="form-control" placeholder="Nhập số điện thoại" ng-model="modal.phoneNumber" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-xs-3">Ngân hàng</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <select class="form-control" ng-model="modal.bank" ng-options="bank for bank in modal.banks"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3 col-xs-3">Số tài khoản</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input class="form-control" placeholder="Nhập số tài khoản" ng-model="modal.cardNumber" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-right: 15px; text-align: right">
+                        <button type="submit" class="btn btn-sm my-btn">OK</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
